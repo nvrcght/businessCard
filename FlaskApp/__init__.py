@@ -25,7 +25,7 @@ tasks = [
     }
 ]
 
-@app.route('/bcard/api/v1.0/parse_photo', methods=['GET'])
+@app.route('/bcard/api/v1.0/parse_photo', methods=['POST'])
 def get_photo_parsed():
 
     _url = 'https://api.projectoxford.ai/vision/v1.0/ocr'
