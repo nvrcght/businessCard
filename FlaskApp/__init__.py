@@ -4,6 +4,9 @@ from datetime import datetime
 import hmac
 import sha
 import base64
+import httplib, urllib
+import requests
+
 
 app = Flask(__name__)
 
@@ -24,7 +27,24 @@ tasks = [
 
 @app.route('/bcard/api/v1.0/parse_photo', methods=['GET'])
 def get_photo_parsed():
-    return jsonify({'tasks': tasks})
+
+    _url = 'https://api.projectoxford.ai/vision/v1.0/ocr'
+    _key = 'bb42f9aca1ff45408049329ae3c317df' #Here you have to paste your primary key
+    _maxNumRetries = 10
+    urlImage = 'http://i.imgur.com/eoYQyhX.jpg'
+
+
+    params = { 'language': 'unk',
+   'detectOrientation ': 'true'} 
+
+    headers = dict()
+    headers['Ocp-Apim-Subscription-Key'] = _key
+    headers['Content-Type'] = 'application/json' 
+
+    json = { 'url': urlImage } 
+    response = requests.request( 'post', _url, json = json, data = None, headers = headers, params = params )
+    resp = "{}".format(response.json())
+    return jsonify(resp)
 
 @app.route('/bcard/api/v1.0/upload_photo', methods=['GET', 'POST'])
 def upload_photo():
