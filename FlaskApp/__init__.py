@@ -1,4 +1,9 @@
 from flask import Flask, jsonify
+import uuid
+from datetime import datetime
+import hmac
+import sha
+import base64
 
 app = Flask(__name__)
 
@@ -24,9 +29,9 @@ def get_photo_parsed():
 @app.route('/bcard/api/v1.0/upload_photo', methods=['GET', 'POST'])
 def upload_photo():
     # DO NOT PASS BACK SECRET!
-    _S3_SECRET = "<secret here>"
-    _S3_ACCESS_KEY = "<key here>"
-    _S3_BUCKET_NAME = "<bucket name here>"
+    _S3_SECRET = "7C4t44tSIKuKUrN/oSQsth99W4alneiKtl7lA+P/"
+    _S3_ACCESS_KEY = "AKIAJ2KVSL32RHYXT5NQ"
+    _S3_BUCKET_NAME = "bcardphotos"
     filename = str(uuid.uuid4()) +".jpeg" #TODO: Support for other non-jpeg file types
     content_type = "image/jpeg"
 
