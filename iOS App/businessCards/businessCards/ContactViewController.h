@@ -22,5 +22,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *addressField;
 @property (strong) userInfo *contact;
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
