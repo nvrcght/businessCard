@@ -8,9 +8,13 @@
 
 #import "ImageViewViewController.h"
 #import "AFNetworking.h"
+#import "userInfo.h"
+#import "ContactViewController.h"
 
 
-@interface ImageViewViewController ()
+@interface ImageViewViewController (){
+    userInfo *contact;
+}
 
 @end
 @implementation ImageViewViewController
@@ -21,7 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.imagePreview setImage:image];
-    [self performSelector:@selector(showAlertView) withObject:nil afterDelay:3];
+    [self performSelector:@selector(showAlertView) withObject:nil afterDelay:1.5];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,6 +47,7 @@
         [spinner stopAnimating];
         [alert dismissViewControllerAnimated:YES completion:nil];
     }];
+//    [self performSegueWithIdentifier:@"displayContact" sender:self];
 }
 
 - (void)startRequest {
@@ -69,12 +74,15 @@
     // setting the body of the post to the reqeust
     [request setHTTPBody:body];
     
-    
-    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSHTTPURLResponse *response = nil;
+    NSError *error = [[NSError alloc] init];
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSLog(@"%li",(long)[response statusCode]);
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",returnString);
-    NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:returnData options:NSJSONReadingMutableLeaves error:nil];
-
+    NSLog(@"Json: %@", returnString);
+    contact = [[userInfo alloc] init];
+    [contact setContactFromData:returnData];
+    [self.button setHidden:NO];
 }
 
 /*
@@ -86,5 +94,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"displayContact"]) {
+        ContactViewController *vc = [segue destinationViewController];
+        vc.contact = contact;
+        
+    }
+}
 
 @end

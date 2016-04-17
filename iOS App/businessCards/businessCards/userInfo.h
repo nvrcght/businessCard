@@ -14,11 +14,16 @@
 @property (strong, nonatomic) NSString *emailAddress;
 @property (strong, nonatomic) NSString *companyName;
 @property (strong, nonatomic) NSString *phoneNumber;
-@property (strong, nonatomic) NSString *faxNumber;
+@property (strong, nonatomic) NSString *phoneNumber2;
 @property (strong, nonatomic) NSString *website;
+@property (strong, nonatomic) NSString *position;
+@property (strong, nonatomic) NSString *address;
+@property (strong, nonatomic) NSData *jSonData;
 //@property (strong, nonatomic) UIImage *picture;
 //@property (strong, nonatomic) UIImage *cardPicture;
-
+- (void)setContactFromData:(NSData*)data;
+- (NSDictionary*)createDictionaryFromObject;
+-(id)initWithDictionary:(NSDictionary*)dict;
 -(id)init;
 
 @end

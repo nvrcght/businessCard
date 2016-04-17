@@ -11,5 +11,6 @@
 
 @interface ImageViewViewController : UIViewController <JPSImagePickerDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *imagePreview;
+@property (strong, nonatomic) IBOutlet UIButton *button;
 @property (strong, nonatomic) UIImage *image;
 @end
