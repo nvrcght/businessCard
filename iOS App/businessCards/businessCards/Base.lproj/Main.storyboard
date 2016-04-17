@@ -116,7 +116,7 @@
                                 <connections>
                                     <outlet property="fName" destination="C9d-9q-izo" id="kUt-nk-I34"/>
                                     <outlet property="lName" destination="SbG-px-orI" id="z8t-AB-kFQ"/>
-                                    <segue destination="1gX-rV-ZaP" kind="show" identifier="" id="BGS-Pi-K10"/>
+                                    <segue destination="1gX-rV-ZaP" kind="show" identifier="displayContactTV" id="BGS-Pi-K10"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
