@@ -1,0 +1,9 @@
+# Uncomment this line to define a global platform for your project
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+
+#pod 'Google/SignIn', '~> 1.0.7'
+#pod 'Firebase', '~> 2.2'
+
+pod 'AFNetworking', '~> 2.6.3'
+pod 'JPSImagePickerController'
